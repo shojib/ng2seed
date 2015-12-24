@@ -12,3 +12,17 @@ Home.config([
     });
   }
 ]);
+
+
+
+import {RouterConfig} from 'angular2/router';
+
+@RouteConfig([
+  {
+    path: '/article',
+    component: Home,
+    as: 'Home'
+  }
+])
+
+class Home {}

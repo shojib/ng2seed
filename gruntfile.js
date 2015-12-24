@@ -22,30 +22,43 @@ module.exports = function(grunt) {
       },
       libs: {
         expand: true,
-        cwd: 'jspm_packages/',
+        cwd: '<%= pkg.folders.src %>/libs/',
         src: '**/*',
-        dest: '<%= pkg.folders.build %>/jspm_packages'
+        dest: '<%= pkg.folders.build %>/libs'
       },
-      config: {
+      js: {
         expand: true,
-        cwd: '',
-        src: 'config.js',
-        dest: '<%= pkg.folders.build %>'
+        cwd: '<%= pkg.folders.entity_src %>/',
+        src: '*.js',
+        dest: '<%= pkg.folders.entity_build %>'
+      },
+      ng2: {
+        expand: true,
+        cwd: 'node_modules/angular2/bundles/',
+        src: '**/*',
+        dest: '<%= pkg.folders.build %>/libs/angular2/bundles'
       }
     },
 
-    babel: {
-      compile_all: {
-        expand: true,
-        flatten: false,
-        sourceMap: true,
-        cwd: '<%= pkg.folders.entity_src %>',
-        src: ['**/*.js'],
+    ts: {
+      default: {
+        src: ['<%= pkg.folders.entity_src %>/*.ts'],
         dest: '<%= pkg.folders.entity_build %>',
-        ext: '.js'
+        // watch: '<%= pkg.folders.entity_src %>',
+        options: {
+          baseDir: '<%= pkg.folders.entity_src %>',
+          target: 'ES5',
+          module: 'commonjs',
+          sourceMap: true,
+          emitDecoratorMetadata: true,
+          experimentalDecorators: true,
+          removeComments: false,
+          noImplicitAny: false,
+          keepDirectoryHierarchy: true
+        }
       }
     },
-
+    
     jade: {
       compile: {
         files: {
@@ -75,9 +88,19 @@ module.exports = function(grunt) {
 
 
     watch: {
-      babel: {
-        files: ['<%= pkg.folders.src %>/modules/**/*.js'],
-        tasks: 'babel'
+      typescript: {
+        files: ['<%= pkg.folders.src %>/modules/*.ts'],
+        tasks: 'ts',
+        options: {
+          livereload: true
+        }
+      },
+      js: {
+        files: ['<%= pkg.folders.src %>/modules/*.js'],
+        tasks: 'copy:js',
+        options: {
+          livereload: true
+        }
       },
       jade: {
         files: ['<%= pkg.folders.src %>/*.jade', '<%= pkg.folders.src %>/modules/**/*.jade'],
@@ -132,7 +155,8 @@ module.exports = function(grunt) {
   });
 
   // Load the plugins for all the tasks.
-  grunt.loadNpmTasks('grunt-babel');
+  // grunt.loadNpmTasks("grunt-typescript");
+  grunt.loadNpmTasks("grunt-ts");
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
@@ -169,7 +193,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compile', [
     'clean',
     'copy',
-    'babel',
+    'ts',
     'jade',
     'compass'
   ]);

@@ -1,14 +1,14 @@
-ngES6 v0.1
+ng2seed v0.1
 ====================
 
-ngES6 is an AngularJS + ES6 seed, which is an all javascript front-end solution. It works out of the box and contains some of the things that you need to kickstart your next Angular projects. The code is nicely modularized, and supports dependency management, unit tests, and e2e tests.
+An Angular 2 seed.
 
-+ Framework/Library: AngularJS, Babel
-+ Language: ES6
-+ Template Engine: Jade
-+ Dependency and Package Management: SystemJS, JSPM
-+ JS Task Runner: Grunt
-+ Unit & E2E Test Frameworks: PhantomJS, Karma, Jasmine, Protractor
++ Framework/Library: AngularJS, Traceur
++ Language: TypeScript
++ Template: Jade
++ Dependency and Package Management: NPM, BOwer
++ Task Runner: Grunt
++ Test Frameworks: PhantomJS, Karma, Jasmine, Protractor
 
 
 Installation:
