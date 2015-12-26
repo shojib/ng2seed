@@ -6,3 +6,4 @@ public/
 **/libs/
 modules/.baseDir.ts
 .vscode/
+.tscache/

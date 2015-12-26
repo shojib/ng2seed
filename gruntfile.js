@@ -20,12 +20,6 @@ module.exports = function(grunt) {
         src: '*',
         dest: '<%= pkg.folders.build %>/i18n'
       },
-      libs: {
-        expand: true,
-        cwd: '<%= pkg.folders.src %>/libs/',
-        src: '**/*',
-        dest: '<%= pkg.folders.build %>/libs'
-      },
       js: {
         expand: true,
         cwd: '<%= pkg.folders.entity_src %>/',
@@ -36,8 +30,20 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'node_modules/angular2/bundles/',
         src: '**/*',
-        dest: '<%= pkg.folders.build %>/libs/angular2/bundles'
-      }
+        dest: '<%= pkg.folders.src %>/libs/angular2/bundles'
+      },
+      rxjs: {
+        expand: true,
+        cwd: 'node_modules/rxjs/',
+        src: '**/*',
+        dest: '<%= pkg.folders.src %>/libs/rxjs'
+      },
+      libs: {
+        expand: true,
+        cwd: '<%= pkg.folders.src %>/libs/',
+        src: '**/*',
+        dest: '<%= pkg.folders.build %>/libs'
+      },
     },
 
     ts: {

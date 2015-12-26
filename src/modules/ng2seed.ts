@@ -1,5 +1,7 @@
 
-import {bootstrap, Component, CORE_DIRECTIVES} from 'angular2/angular2';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
+import {bootstrap} from 'angular2/platform/browser';
 
 @Component({
     selector: 'my-app',
