@@ -1,5 +1,7 @@
-ng2seed v0.1
+ng2seed v0.1-a1
 ====================
+
+
 
 An Angular 2 seed.
 
