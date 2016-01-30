@@ -1,12 +1,11 @@
-"use strict";
+import {Component} from 'angular2/core';
+import {Header} from './common/header/main';
+import {Footer} from './common/footer/main';
 
-import angular from "angular";
-import "./http_interceptor/main";
-import "./header/main";
-import "./error/main";
+@Component({ 
+  selector: 'common',
+  directives: [Header, Footer]
+})
 
-var Common = angular.module("ngES6.common", [
-	"ngES6.http.interceptor",
-	"ngES6.header",
-	"ngES6.error.404"
-]);
+export class Common {}
+

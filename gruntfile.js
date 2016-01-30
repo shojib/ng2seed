@@ -26,6 +26,18 @@ module.exports = function(grunt) {
         src: '*.js',
         dest: '<%= pkg.folders.entity_build %>'
       },
+      index: {
+        expand: true,
+        cwd: '<%= pkg.folders.src %>/',
+        src: 'index.html',
+        dest: '<%= pkg.folders.build %>'
+      },
+      template: {
+        expand: true,
+        cwd: '<%= pkg.folders.entity_src %>/',
+        src: '**/*.html',
+        dest: '<%= pkg.folders.entity_build %>'
+      },
       ng2: {
         expand: true,
         cwd: 'node_modules/angular2/bundles/',
@@ -64,22 +76,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    
-    jade: {
-      compile: {
-        files: {
-          '<%= pkg.folders.build %>/index.html': '<%= pkg.folders.src %>/index.jade'
-        }
-      },
-      compile_all: {
-        expand: true,
-        flatten: false,
-        cwd: '<%= pkg.folders.entity_src %>',
-        src: ['**/*.jade'],
-        dest: '<%= pkg.folders.entity_build %>',
-        ext: '.html'
-      }
-    },
 
     compass: {
       compile_all: {
@@ -95,7 +91,7 @@ module.exports = function(grunt) {
 
     watch: {
       typescript: {
-        files: ['<%= pkg.folders.src %>/modules/*.ts'],
+        files: ['<%= pkg.folders.src %>/modules/**/*.ts'],
         tasks: 'ts',
         options: {
           livereload: true
@@ -108,9 +104,19 @@ module.exports = function(grunt) {
           livereload: true
         }
       },
-      jade: {
-        files: ['<%= pkg.folders.src %>/*.jade', '<%= pkg.folders.src %>/modules/**/*.jade'],
-        tasks: 'jade'
+      index: {
+        files: ['<%= pkg.folders.src %>/*.html'],
+        tasks: 'copy:index',
+        options: {
+          livereload: true
+        }
+      },
+      template: {
+        files: ['<%= pkg.folders.src %>/modules/**/*.html'],
+        tasks: 'copy:template',
+        options: {
+          livereload: true
+        }
       }
     },
 
@@ -143,7 +149,7 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options:  {
-          port: 9000,
+          port: 9900,
           base: '<%= pkg.folders.build %>',
           hostname: 'localhost'
         }
@@ -164,7 +170,6 @@ module.exports = function(grunt) {
   // grunt.loadNpmTasks("grunt-typescript");
   grunt.loadNpmTasks("grunt-ts");
   grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -200,7 +205,6 @@ module.exports = function(grunt) {
     'clean',
     'copy',
     'ts',
-    'jade',
     'compass'
   ]);
 
