@@ -7,3 +7,4 @@ public/
 modules/.baseDir.ts
 .vscode/
 .tscache/
+**/*.txt
