@@ -1,11 +1,11 @@
-import {Component, View, Inject} from 'angular2/core';
+import {Component, View, Inject, Injectable} from 'angular2/core';
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
 import {Factory} from './files/factory';
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({ 
     selector: 'article',
-    providers: [Factory, HTTP_PROVIDERS, ROUTER_PROVIDERS]
+    providers: [Factory, HTTP_PROVIDERS]
 })
 
 @View({ 
@@ -13,11 +13,12 @@ import {Factory} from './files/factory';
     templateUrl: './modules/article/tmpl/article.html'
 })
 
+
 export class Article {
     articles: any;
     
-    constructor(@Inject(Factory) factory: Factory) {
+    constructor(@Inject(Factory) factory) {
         this.articles = factory.getArticles();
-        console.log(this.articles);
+        console.log('Article: ' + this.articles);
     }
 }

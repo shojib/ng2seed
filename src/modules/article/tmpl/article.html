@@ -1,6 +1,8 @@
 <div class="default-container">
     
-    articles: {{articles}}
+    <div template='ngFor #article of articles; #idx = index'>
+        {{idx}}: {{article.headline.main}}
+    </div>
     
     <!--<div class="col-lg">
         <div class="col-lg">

@@ -1,7 +1,6 @@
 import {Component, View} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {ROUTER_PROVIDERS} from 'angular2/router';
-
 import {Header} from './common/header/main';
 import {Footer} from './common/footer/main';
 import {Home} from './home/main';
