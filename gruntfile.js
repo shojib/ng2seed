@@ -74,6 +74,22 @@ module.exports = function(grunt) {
           noImplicitAny: false,
           keepDirectoryHierarchy: true
         }
+      },
+      all: {
+        src: ['<%= pkg.folders.entity_src %>/**/*.ts'],
+        dest: '<%= pkg.folders.entity_build %>',
+        // watch: '<%= pkg.folders.entity_src %>',
+        options: {
+          baseDir: '<%= pkg.folders.entity_src %>',
+          target: 'ES5',
+          module: 'commonjs',
+          sourceMap: true,
+          emitDecoratorMetadata: true,
+          experimentalDecorators: true,
+          removeComments: false,
+          noImplicitAny: false,
+          keepDirectoryHierarchy: true
+        }
       }
     },
 
@@ -100,13 +116,6 @@ module.exports = function(grunt) {
       compass: {
         files: ['<%= pkg.folders.src %>/scss/main.scss'],
         tasks: 'compass',
-        options: {
-          livereload: true
-        }
-      },
-      js: {
-        files: ['<%= pkg.folders.src %>/modules/*.js'],
-        tasks: 'copy:js',
         options: {
           livereload: true
         }
