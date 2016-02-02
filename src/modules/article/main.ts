@@ -1,4 +1,4 @@
-import {Component, View, Inject, Injectable} from 'angular2/core';
+import {Component, View, OnInit, Inject} from 'angular2/core';
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {Factory} from './files/factory';
 import {HTTP_PROVIDERS} from 'angular2/http';
@@ -14,11 +14,20 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 })
 
 
-export class Article {
+export class Article implements OnInit {
     articles: any;
+    errorMessage: any;
     
-    constructor(@Inject(Factory) factory) {
-        this.articles = factory.getArticles();
-        console.log('Article: ' + this.articles);
+    ngOnInit() { 
+        this.getArticles();
+    }
+    
+    constructor(private factory: Factory) {}
+    
+    getArticles() {
+        this.factory.getArticles()
+            .subscribe(
+                articles => this.articles = articles,
+                error =>  this.errorMessage = <any>error);
     }
 }
