@@ -1,6 +1,7 @@
 import {Component, View, OnInit, Inject} from 'angular2/core';
 import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {Factory} from './files/factory';
+import {NgModel} from 'angular2/common';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({ 
@@ -9,25 +10,41 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 })
 
 @View({ 
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, NgModel],
     templateUrl: './modules/article/tmpl/article.html'
 })
 
 
 export class Article implements OnInit {
-    articles: any;
-    errorMessage: any;
+    private searchQuery: String;
+    private articles: any;
+    private errorMessage: any;
     
     ngOnInit() { 
-        this.getArticles();
+        this.getArticles(this.searchQuery);
     }
     
-    constructor(private factory: Factory) {}
+    constructor (private factory: Factory) {
+        this.searchQuery = 'Technology';
+    }
     
-    getArticles() {
-        this.factory.getArticles()
+    getArticles (query) {
+        this.factory.getArticles(query)
             .subscribe(
-                articles => this.articles = articles,
-                error =>  this.errorMessage = <any>error);
+                articles => this.setArticles(articles),
+                error =>  this.errorMessage = <any>error,
+                () => this.completed())
+    }
+    
+    setArticles (articles) {
+        this.articles = articles;
+    }
+    
+    setError (error) {
+        this.errorMessage = error;
+    }
+    
+    completed () {
+        console.log('Completed: ' + this.articles[0].multimedia[0].url);
     }
 }
