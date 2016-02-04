@@ -113,8 +113,15 @@ module.exports = function(grunt) {
 
     watch: {
       typescript: {
-        files: ['<%= pkg.folders.src %>/modules/**/*.ts'],
+        files: ['<%= pkg.folders.entity_src %>/**/*.ts'],
         tasks: 'ts',
+        options: {
+          livereload: true
+        }
+      },
+      js: {
+        files: ['<%= pkg.folders.entity_src %>/**/*.js'],
+        tasks: 'copy:allJs',
         options: {
           livereload: true
         }
@@ -134,7 +141,7 @@ module.exports = function(grunt) {
         }
       },
       template: {
-        files: ['<%= pkg.folders.src %>/modules/**/*.html'],
+        files: ['<%= pkg.folders.entity_src %>/**/*.html'],
         tasks: 'copy:template',
         options: {
           livereload: true

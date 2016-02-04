@@ -25,27 +25,31 @@ export class AngularSpeedTest {
     private router: any;
     private routeParams: any;
     private isTimerOn: boolean;
+    private rowVal: Number;
+    private colVal: Number;
 
     constructor () {
         this.router = Router;
         this.version = 1;
+        this.rowVal = 51;
+        this.colVal = 31;
         this.angularService = new AngularService();
-        this.rows = this.angularService.populateArray(51);
-        this.columns = this.angularService.populateArray(12);
-        let cellArray = this.angularService.create2DArray(51);
-        this.cell = this.angularService.populateCell(cellArray, 51, 12, 0); 
+        this.rows = this.angularService.populateArray(this.rowVal);
+        this.columns = this.angularService.populateArray(this.colVal);
+        let cellArray = this.angularService.create2DArray(this.rowVal);
+        this.cell = this.angularService.populateCell(cellArray, this.rowVal, this.colVal, 0); 
         let rgbArray = this.angularService.create2DArray(255);
-        this.rgba1 = this.angularService.populateCell(rgbArray, 51, 12, 255);  
-        this.rgba2 = this.angularService.populateCell(rgbArray, 51, 12, 255);  
-        this.rgba3 = this.angularService.populateCell(rgbArray, 51, 12, 255);    
+        this.rgba1 = this.angularService.populateCell(rgbArray, this.rowVal, this.colVal, 255);  
+        this.rgba2 = this.angularService.populateCell(rgbArray, this.rowVal, this.colVal, 255);  
+        this.rgba3 = this.angularService.populateCell(rgbArray, this.rowVal, this.colVal, 255);    
     }
 
     runInterval () {
         let self = this;
         return setInterval(function() {
             console.log("start timer");
-            let rndCols = self.angularService.getRandomNumber(12);
-            let rndRows = self.angularService.getRandomNumber(51);
+            let rndCols = self.angularService.getRandomNumber(self.colVal);
+            let rndRows = self.angularService.getRandomNumber(self.rowVal);
             
             self.cell[rndCols][rndRows] = self.angularService.getRandomNumber(255);
             self.rgba1[rndCols][rndRows] = self.angularService.getRandomNumber(255);
@@ -56,9 +60,6 @@ export class AngularSpeedTest {
             console.log('self.rgba1[rndCols][rndRows]: ' + self.rgba1[rndCols][rndRows]);
             console.log('self.rgba2[rndCols][rndRows]: ' + self.rgba2[rndCols][rndRows]);
             console.log('self.rgba3[rndCols][rndRows]: ' + self.rgba3[rndCols][rndRows]);
-            console.log('self.angularService.getRandomNumber(255): ' + self.angularService.getRandomNumber(255));
-            console.log('self.angularService.getRandomNumber(255): ' + self.angularService.getRandomNumber(255));
-            console.log('self.angularService.getRandomNumber(255): ' + self.angularService.getRandomNumber(255));
         }, 0);   
     }
 

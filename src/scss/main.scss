@@ -32,7 +32,6 @@ body {
 
 .container {
   position: relative;
-  width: 700px;
   padding: 0px 70px;
   color: $color;
   font-family: $font-family;
@@ -40,6 +39,20 @@ body {
   h3, h5 {
     font-weight: bold;
   }
+  
+  .inline-center {
+    text-align: center;
+}
+  
+    .col-md-1 {
+        margin-bottom: 0;
+        width: 24px;
+        height: 22px;
+    }
+.speed-table {
+    font-size: 9px;
+    font-weight: bold;
+}
 
   .media-group {
     padding-left: 0;
@@ -51,8 +64,9 @@ body {
     min-height: 200px;
   }
 
-  #home {
+  .wrapper {
     min-height: 300px;
+    display: block;
     padding: 50px;
     margin-bottom: 20px;
     background-color: $view-bg-color;

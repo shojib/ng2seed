@@ -9,10 +9,6 @@ export class AngularService {
 
     constructor() {
         this.isTimerOn = false;
-        // this.cell = this.create2DArray(31);
-        // this.rgba1 = this.create2DArray(255);
-        // this.rgba2 = this.create2DArray(255);
-        // this.rgba3 = this.create2DArray(255);
     }
 
     getRandomNumber(val) {
