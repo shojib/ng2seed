@@ -1,12 +1,12 @@
 import {Component, View} from 'angular2/core';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouterLink, RouteConfig} from 'angular2/router';
 
 @Component({ 
   selector: 'home'
 })
 
 @View({ 
-	directives: [ROUTER_DIRECTIVES],
+	directives: [RouterLink],
 	templateUrl: './modules/home/tmpl/home.html'
 })
 

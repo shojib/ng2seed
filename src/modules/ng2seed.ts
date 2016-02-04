@@ -4,6 +4,7 @@ import {Header} from './common/header/main';
 import {Footer} from './common/footer/main';
 import {Home} from './home/main';
 import {Article} from './article/main';
+import {SpeedTest} from './speedtest/main';
 
 @Component({ 
     selector: 'ng2seed'
@@ -23,9 +24,9 @@ import {Article} from './article/main';
 
 @RouteConfig([
 	{ path: '/', component: Home, name: 'Home' },
-	{ path: '/error', component: Error, name: 'Error' },
-	{ path: '/article', component: Article, name: 'Article'}
-	// { path: '/poem', component: Poem }
+	{ path: '/article', component: Article, name: 'Article'},
+    { path: '/speedtest/...', component: SpeedTest, name: 'SpeedTest' },
+	{ path: '/error', component: Error, name: 'Error' }
 ])
 
 export class Ng2Seed {}

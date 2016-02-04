@@ -20,10 +20,28 @@ module.exports = function(grunt) {
         src: '*',
         dest: '<%= pkg.folders.build %>/i18n'
       },
+      ng2: {
+        expand: true,
+        cwd: 'node_modules/angular2/bundles/',
+        src: '**/*',
+        dest: '<%= pkg.folders.src %>/libs/angular2/bundles'
+      },
+      rxjs: {
+        expand: true,
+        cwd: 'node_modules/rxjs/',
+        src: '**/*',
+        dest: '<%= pkg.folders.src %>/libs/rxjs'
+      },
       js: {
         expand: true,
         cwd: '<%= pkg.folders.entity_src %>/',
         src: '*.js',
+        dest: '<%= pkg.folders.entity_build %>'
+      },
+      allJs: {
+        expand: true,
+        cwd: '<%= pkg.folders.entity_src %>/',
+        src: '**/*.js',
         dest: '<%= pkg.folders.entity_build %>'
       },
       index: {
@@ -37,18 +55,6 @@ module.exports = function(grunt) {
         cwd: '<%= pkg.folders.entity_src %>/',
         src: '**/*.html',
         dest: '<%= pkg.folders.entity_build %>'
-      },
-      ng2: {
-        expand: true,
-        cwd: 'node_modules/angular2/bundles/',
-        src: '**/*',
-        dest: '<%= pkg.folders.src %>/libs/angular2/bundles'
-      },
-      rxjs: {
-        expand: true,
-        cwd: 'node_modules/rxjs/',
-        src: '**/*',
-        dest: '<%= pkg.folders.src %>/libs/rxjs'
       },
       libs: {
         expand: true,

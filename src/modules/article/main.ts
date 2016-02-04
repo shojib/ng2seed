@@ -1,5 +1,4 @@
 import {Component, View, OnInit, Inject} from 'angular2/core';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {Factory} from './files/factory';
 import {NgModel} from 'angular2/common';
 import {HTTP_PROVIDERS} from 'angular2/http';
@@ -10,10 +9,9 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 })
 
 @View({ 
-    directives: [ROUTER_DIRECTIVES, NgModel],
+    directives: [NgModel],
     templateUrl: './modules/article/tmpl/article.html'
 })
-
 
 export class Article implements OnInit {
     private searchQuery: String;
@@ -48,3 +46,4 @@ export class Article implements OnInit {
         console.log('Completed: ' + this.articles[0].multimedia[0].url);
     }
 }
+
